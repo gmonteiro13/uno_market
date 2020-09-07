@@ -1,0 +1,22 @@
+<h1>
+Uno Market
+</h1>
+
+<h2>
+Compre e venda jogos, consoles, periféricos e muito mais!
+</h2>
+
+<h3>
+    <% if user_signed_in? %>
+        <%= link_to 'Encerrar sessão', destroy_user_session_path, method: :delete %>
+    <% else %>
+        <%= link_to 'Iniciar sessão', new_user_session_path %>
+        <%= link_to 'Criar conta', new_user_registration_path %>
+    <% end %>
+</h3>
+
+<h4>
+<% if user_signed_in? %>
+    <%= current_user.company %>
+<% end %>
+</h4>
