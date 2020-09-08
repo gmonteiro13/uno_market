@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Perfis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome completo</th>
+      <th>Nome social</th>
+      <th>Data de nascimento</th>
+      <th>Cargo</th>
+      <th>Setor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.full_name %></td>
+        <td><%= profile.social_name %></td>
+        <td><%= profile.birth_date.strftime('%d-%m-%Y') %></td>
+        <td><%= profile.job %></td>
+        <td><%= profile.department %></td>
+        <td><%= link_to 'Ver', profile %></td>
+        <td><%= link_to 'Editar', edit_profile_path(profile) %></td>
+        <td><%= link_to 'Deletar', profile, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo perfil', new_profile_path %>
+<%= link_to 'Voltar para a página inicial', root_path %>

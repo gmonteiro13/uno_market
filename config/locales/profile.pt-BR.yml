@@ -1,0 +1,13 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      profile:
+        one: 'Perfil'
+    attributes:
+      profile:
+        full_name: Nome completo
+        social_name: Nome social
+        birth_date: Data de nascimento
+        job: Cargo
+        department: Setor

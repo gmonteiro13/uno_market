@@ -8,6 +8,11 @@ Compre e venda jogos, consoles, periféricos e muito mais!
 
 <h3>
     <% if user_signed_in? %>
+        <% if current_user.profile == nil %>
+            <%= link_to 'Criar perfil', new_profile_path %>
+        <% else %>
+            <%= link_to 'Ver seu perfil', current_user.profile %>
+        <% end%>
         <%= link_to 'Encerrar sessão', destroy_user_session_path, method: :delete %>
     <% else %>
         <%= link_to 'Iniciar sessão', new_user_session_path %>
