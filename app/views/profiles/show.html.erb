@@ -25,5 +25,17 @@
   <%= @profile.department %>
 </p>
 
+<p>
+  <strong>Empresa:</strong>
+  <%= @profile.user.company %>
+</p>
+
+<p>
+  <strong>Produtos cadastrados:</strong>
+      <% current_user.products.each do |product| %>
+      <td><%= link_to product.product_name, product %></td>
+      <% end %>
+</p>
+
 <%= link_to 'Editar', edit_profile_path(@profile) %> |
 <%= link_to 'Voltar', profiles_path %>
