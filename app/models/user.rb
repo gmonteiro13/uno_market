@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
 
   has_one :profile, dependent: :destroy
+  has_many :products
 
   before_create :set_company
 
