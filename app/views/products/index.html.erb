@@ -24,11 +24,17 @@
         <td><%= product.description %></td>
         <td><%= product.price %></td>
         <td><%= product.user.company %></td>
+        <td><%= product.user.email %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
+    <% end %>
+    <%= form_with url: products_search_path, method: :get do |f| %>
+      <%= f.label :q, 'Busca por produtos'%>
+      <%= f.text_field :q %>
+      <%= f.submit 'Buscar' %>
     <% end %>
   </tbody>
 </table>

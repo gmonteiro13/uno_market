@@ -16,18 +16,18 @@
 
   <tbody>
     <% @profiles.each do |profile| %>
-    <% if profile.user.company == current_user.company %>
-      <tr>
-        <td><%= profile.full_name %></td>
-        <td><%= profile.social_name %></td>
-        <td><%= profile.birth_date.strftime('%d-%m-%Y') %></td>
-        <td><%= profile.job %></td>
-        <td><%= profile.department %></td>
-        <td><%= link_to 'Ver', profile %></td>
-        <td><%= link_to 'Editar', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Deletar', profile, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-      </tr>
-    <% end%>
+      <% if profile.user.company == current_user.company %>
+        <tr>
+          <td><%= profile.full_name %></td>
+          <td><%= profile.social_name %></td>
+          <td><%= profile.birth_date.strftime('%d-%m-%Y') %></td>
+          <td><%= profile.job %></td>
+          <td><%= profile.department %></td>
+          <td><%= link_to 'Ver', profile %></td>
+          <td><%= link_to 'Editar', edit_profile_path(profile) %></td>
+          <td><%= link_to 'Deletar', profile, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
