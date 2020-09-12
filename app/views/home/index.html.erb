@@ -24,8 +24,8 @@ Compre e venda jogos, consoles, periféricos e muito mais!
 
 <h4>
 <% if user_signed_in? %>
-    <%= current_user.company %>
-    <%= current_user.email %>
+    <strong> Sua empresa: <%= current_user.company %> <br>
+    Seu email: <%= current_user.email %> </strong>
 <% end %>
 </h4>
 

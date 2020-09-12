@@ -30,13 +30,14 @@
   <%= @product.user.company %>
 </p>
 
-<p>
-  <%= link_to 'Comprar', new_product_deal_path(@product.id) %>
-</p>
-
 <% if @product.deal %>
 <p>
-<strong>Produto já está com o processo de compra iniciado</strong>
+<strong>Este produto já está com o processo de compra iniciado.</strong>
+<strong>Iniciado por: <%= @product.deal.user.email %></strong>
+</p>
+<% else %>
+<p>
+  <%= link_to 'Comprar', new_product_deal_path(@product.id) %>
 </p>
 <% end %>
 
