@@ -1,0 +1,41 @@
+<h1>Iniciando o processo de compra!</h1>
+<h2>Confirme as informações antes de iniciar a compra.
+O vendedor revisará as informações e finalizará a venda.</h2>
+
+<h3>Dados do produto</h3>
+<p>
+  <strong>Product name:</strong>
+  <%= @product.product_name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @product.category %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Vendedor:</strong>
+  <%= @product.user.email %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @product.user.company %>
+</p>
+
+
+<%= form_with model: [@product, @deal], local: true do |f| %>
+    <%= f.label "Comprador"%>
+    <%= f.text_field :user_id, required: true, class: 'form-control', value:current_user.id  %>
+    <%= f.submit 'Iniciar compra' %>
+<% end %>
