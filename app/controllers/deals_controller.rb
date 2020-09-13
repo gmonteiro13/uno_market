@@ -8,6 +8,8 @@ class DealsController < ApplicationController
         @product = Product.find(params[:product_id])
         @deal = @product.build_deal(deal_params)
         @deal.save
+        @product.unavailable!
+        
         redirect_to @product, notice: 'Processo de compra iniciado'
     end
 
