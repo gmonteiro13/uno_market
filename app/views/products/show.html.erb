@@ -1,22 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Product name:</strong>
+  <strong>Nome do produto:</strong>
   <%= @product.product_name %>
 </p>
 
 <p>
-  <strong>Category:</strong>
+  <strong>Categoria:</strong>
   <%= @product.category %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descrição:</strong>
   <%= @product.description %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Preço:</strong>
   <%= @product.price %>
 </p>
 
@@ -26,7 +26,7 @@
 </p>
 
 <p>
-  <strong>Company:</strong>
+  <strong>Empresa:</strong>
   <%= @product.user.company %>
 </p>
 
@@ -37,23 +37,26 @@
 </p>
 <% else %>
 <p>
-  <%= link_to 'Comprar', new_product_deal_path(@product.id) %>
+  <% if @product.user != current_user %>
+    <%= link_to 'Comprar', new_product_deal_path(@product.id) %>
+  <% end %>
 </p>
 <% end %>
 
 <small>Submitted <%= time_ago_in_words(@product.created_at) %> ago</small>
 
-<h3>Comments</h3>
+<h3>Commentários</h3>
 
 <%= form_for [@product, Comment.new] do |f| %>
 <%= f.text_area :body, placeholder: "Adicionar um comentário" %><br/>
-<%= f.submit "Adicionar comentário" %>
+<%= f.submit "Comentar" %>
 <% end %>
 
 <ul>
   <%= render(partial: 'comments/comment', collection: @product.comments) %>
 </ul>
 
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<% if @product.user == current_user %>
+  <%= link_to 'Editar', edit_product_path(@product) %>
+<% end %> |
+<%= link_to 'Voltar', products_path %>

@@ -4,22 +4,22 @@ O vendedor revisará as informações e finalizará a venda.</h2>
 
 <h3>Dados do produto</h3>
 <p>
-  <strong>Product name:</strong>
+  <strong>Nome do produto:</strong>
   <%= @product.product_name %>
 </p>
 
 <p>
-  <strong>Category:</strong>
+  <strong>Categoria:</strong>
   <%= @product.category %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descrição:</strong>
   <%= @product.description %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Preço:</strong>
   <%= @product.price %>
 </p>
 
@@ -29,13 +29,13 @@ O vendedor revisará as informações e finalizará a venda.</h2>
 </p>
 
 <p>
-  <strong>Company:</strong>
+  <strong>Empresa:</strong>
   <%= @product.user.company %>
 </p>
 
 
 <%= form_with model: [@product, @deal], local: true do |f| %>
     <%= f.label "Comprador"%>
-    <%= f.text_field :user_id, required: true, class: 'form-control', value:current_user.id  %>
+    <%= f.text_field :user_id, required: true, class: 'form-control', value:current_user.id, readonly: => true  %>
     <%= f.submit 'Iniciar compra' %>
 <% end %>

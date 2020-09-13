@@ -24,8 +24,10 @@
           <td><%= profile.job %></td>
           <td><%= profile.department %></td>
           <td><%= link_to 'Ver', profile %></td>
+          <% if profile == current_user.profile %>
           <td><%= link_to 'Editar', edit_profile_path(profile) %></td>
           <td><%= link_to 'Deletar', profile, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>
@@ -34,5 +36,7 @@
 
 <br>
 
+<% if current_user.profile == nil %>
 <%= link_to 'Novo perfil', new_profile_path %>
+<% end %>
 <%= link_to 'Voltar para a página inicial', root_path %>

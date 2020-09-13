@@ -16,7 +16,6 @@ feature 'User search products' do
         
         visit root_path
         
-        click_on 'Ver todos os produtos'
         fill_in 'Busca por produtos', with: product.product_name
         click_on 'Buscar'
 
