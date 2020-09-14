@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.where(status: :available) # Usuário vê apenas os produtos da empresa aqui em vez de usar if no index?
   end
 
   # GET /products/1
