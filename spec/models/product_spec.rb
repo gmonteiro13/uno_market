@@ -11,7 +11,6 @@ RSpec.describe Product, type: :model do
       expect(product.errors[:category]).to include('não pode ficar em branco')
       expect(product.errors[:description]).to include('não pode ficar em branco')
       expect(product.errors[:price]).to include('não pode ficar em branco')
-      expect(product.errors[:user_id]).to include('não pode ficar em branco')
     end
   end
 end
