@@ -14,5 +14,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
+  resources :deals, only: [] do
+    post 'closed', on: :member
+    post 'cancelled', on: :member
+  end
+
   
 end
