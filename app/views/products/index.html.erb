@@ -40,3 +40,6 @@
 <br>
 
 <%= link_to 'Novo produto', new_product_path %> | <%= link_to 'Voltar para a página inicial', root_path %>
+<% if current_user.profile == nil %>
+<%= link_to 'Criar perfil', new_profile_path %>
+<% end %>

@@ -19,7 +19,11 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    if current_user.profile == nil
+      redirect_to products_path, notice: 'Você precisa ter um perfil para registrar um novo produto'
+    else
     @product = Product.new
+    end
   end
 
   # GET /products/1/edit
