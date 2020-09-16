@@ -8,3 +8,4 @@ pt-BR:
       user:
         email: Email
         password: Senha
+        user_id: ID de Usuário
