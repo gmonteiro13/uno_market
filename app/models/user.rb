@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :profile
   has_many :products
   has_many :deals
+  has_many :comments
 
   before_create :set_company
 

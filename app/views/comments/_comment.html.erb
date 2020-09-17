@@ -1,6 +1,6 @@
 <li>
   <%= comment.body %> -
-  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
+  <small>Enviado a <%= time_ago_in_words(comment.created_at) %> atrás por <%= comment.user.profile.social_name%></small>
 
   <%= form_for [comment, Comment.new] do |f| %>
       <%= f.text_area :body, placeholder: "Adicionar uma resposta" %><br/>
