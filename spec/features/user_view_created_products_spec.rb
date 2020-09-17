@@ -21,6 +21,13 @@ feature 'User view products' do
         expect(page).to have_content(user_2.company)
     end
 
+    scenario 'must be logged in to view details' do
+        visit root_path
+        click_on 'Ver todos os produtos'
+
+        expect(page).to have_content('Para continuar, faça login ou registre-se')
+    end
+
     scenario 'but does not view products from a different company' do
         viewer_user = User.create!(email: 'biel@nintendo.com', password: '123456')
         sony_user = User.create!(email: 'tiago@sony.com', password: '654321')
@@ -47,5 +54,4 @@ feature 'User view products' do
         expect(page).to have_content('100')
         expect(page).to have_content(nintendo_user.company)
     end
-
 end

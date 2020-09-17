@@ -42,4 +42,11 @@ feature 'User view profile' do
         expect(page).to have_content('Tiago Pereira')
         expect(page).not_to have_content('Roberta Arcoverde')
     end
+
+    scenario 'must be logged in to view details' do
+        visit root_path
+        click_on 'Ver todos os perfis'
+
+        expect(page).to have_content('Para continuar, faça login ou registre-se')
+    end
 end

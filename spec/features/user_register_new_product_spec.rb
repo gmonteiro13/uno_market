@@ -10,7 +10,6 @@ feature 'User register a valid product' do
 
         expect(current_path).to eq(products_path)
         expect(page).to have_content('Você precisa ter um perfil para registrar um novo produto')
-        expect(page).to have_link('Criar perfil')
     end
 
     scenario 'and attributes cannot be blank' do
@@ -32,7 +31,7 @@ feature 'User register a valid product' do
         expect(page).to have_content('não pode ficar em branco', count: 3)
     end
 
-    scenario 'and price must be greater or equal to 1' do
+    scenario 'and price must be greater or equal to 1' do # é um teste que deve ser colocado nos testes de unidade?
         user = User.create!(email: 'biel@email.com', password: '123456')
         profile = Profile.create!(full_name: 'Gabriel Soares Cardoso Monteiro', social_name: 'Gabriel Monteiro', 
         birth_date: '14/12/1994', job: 'Level Designer', department: 'Jogos', user: user)
