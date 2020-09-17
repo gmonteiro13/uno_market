@@ -1,7 +1,11 @@
 class DealsController < ApplicationController
     def new
         @product = Product.find(params[:product_id])
+        if current_user.profile == nil
+            redirect_to product_path(@product.id), notice: 'Você precisa criar um perfil para fazer uma compra'
+        else
         @deal = Deal.new
+        end
     end
 
     def create
