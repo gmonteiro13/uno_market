@@ -64,8 +64,11 @@
 <% if @product.user == current_user %>
   <%= link_to 'Editar', edit_product_path(@product) %>
 
-  <% if @product.deal.status = 'open' %>
-    <%= link_to 'Finalizar venda', closed_deal_path(@product.id), method: :post %>
+
+  <% if @product.deal%>
+    <% if @product.deal.status = 'open' %>
+      <%= link_to 'Finalizar venda', closed_deal_path(@product.id), method: :post %>
+    <% end %>
   <% end %>
 
 <% end %> |
