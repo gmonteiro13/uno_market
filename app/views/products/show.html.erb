@@ -35,18 +35,27 @@
   <%= @product.status %>
 </p>
 
-<% if @product.deal %>
-<p>
-<strong>Este produto já está com o processo de compra iniciado.</strong>
-<strong>Iniciado por: <%= @product.deal.user.email %></strong>
-</p>
-<% else %>
+
 <p>
   <% if @product.user != current_user %>
-    <%= link_to 'Comprar', new_product_deal_path(@product.id) %>
+    <% if @product.deal %>
+        <% if @product.deal.status == 'open' %>
+        <p>
+        <strong>Este produto já está com o processo de compra iniciado.</strong>
+        <strong>Iniciado por: <%= @product.deal.user.email %></strong>
+        </p>
+        <% end %>
+        <% if @product.deal.status == 'closed' %>
+        <p>
+        <strong>Este produto já está vendido.</strong>
+        <strong>Comprado por: <%= @product.deal.user.email %></strong>
+        </p>
+        <% end %>
+    <% else %>
+      <%= link_to 'Comprar', new_product_deal_path(@product.id) %>
+    <% end %>
   <% end %>
 </p>
-<% end %>
 
 <small>Submitted <%= time_ago_in_words(@product.created_at) %> ago</small>
 
@@ -66,7 +75,7 @@
 
 
   <% if @product.deal%>
-    <% if @product.deal.status = 'open' %>
+    <% if @product.deal.status == 'open' %>
       <%= link_to 'Ver detalhes da compra', edit_deal_path(@product.deal) %>
     <% end %>
   <% end %>

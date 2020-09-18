@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User view products' do
+feature 'User start deal' do
     scenario 'succesfully' do
         user = User.create!(email: 'biel@nintendo.com', password: '123456')
         user_2 = User.create!(email: 'tiago@nintendo.com', password: '654321')
@@ -78,5 +78,28 @@ feature 'User view products' do
         expect(page).to have_content('Venda confirmada!')
         expect(deal.reload).to be_closed
         expect(product.reload).to be_sold
+    end
+
+    scenario 'and seller cancels deal' do
+        user = User.create!(email: 'biel@nintendo.com', password: '123456')
+        user_2 = User.create!(email: 'tiago@nintendo.com', password: '654321')
+        profile = Profile.create!(full_name: 'Gabriel Soares Cardoso Monteiro', social_name: 'Gabriel Monteiro', 
+        birth_date: '14/12/1994', job: 'Level Designer', department: 'Jogos', user: user)
+        profile_2 = Profile.create!(full_name: 'Tiago Pereira', social_name: 'Tiago', 
+        birth_date: '26/11/1993', job: 'DJ', department: 'Soundtrack', user: user_2)
+        product = Product.create!(product_name: 'Donkey Kong Country 2', category: 'Jogos', description: 'Jogo de aventura do SNES', price: 100, user: user_2, status: :available)
+        deal = Deal.create!(product: product, user_id: user.id)
+
+        login_as user_2
+        visit root_path
+        click_on 'Ver seu perfil'
+        click_on 'Donkey Kong Country 2'
+        click_on 'Ver detalhes da compra'
+        select 'Cancelar', from: 'Status'
+        click_on 'Finalizar'
+        
+        expect(page).to have_content('Venda cancelada. O produto está disponível.')
+        expect(deal.reload).to be_cancelled
+        expect(product.reload).to be_available
     end
 end

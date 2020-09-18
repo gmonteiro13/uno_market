@@ -23,8 +23,11 @@ class DealsController < ApplicationController
         if @deal.closed?
             @deal.product.sold!
             redirect_to @deal.product, notice: 'Venda confirmada!'
+        elsif @deal.cancelled?
+            @deal.product.available!
+            redirect_to @deal.product, notice: 'Venda cancelada. O produto está disponível.'
         else
-            redirect_to @deal.product
+            render :edit
         end
     end
 
