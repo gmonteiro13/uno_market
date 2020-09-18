@@ -32,9 +32,9 @@
   <%= @deal.user.email %>
 </p>
 
-<%= form_with model: [@product, @deal], local: true do |f| %>
+<%= form_with model: @deal, local: true do |f| %>
     <%= f.label :status %>
-    <%= f.select(:status, options_for_select([["Confirmar", 5], ["Cancelar", 10]])) %>
+    <%= f.select(:status, options_for_select([["Cancelar", "cancelled"], ["Confirmar", "closed"]])) %>
 
     <%= f.label :price %>
     <%= f.number_field :price, required: true, class: 'form-control', value: @deal.product.price%>

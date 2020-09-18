@@ -19,16 +19,12 @@ class DealsController < ApplicationController
 
     def update
         @deal = Deal.find(params[:id])
-        if @deal.update(deal_params)
-            if @deal.closed?
-                @deal.product.sold!
-                redirect_to @deal.product, notice: 'Venda finalizada!'
-            else
-                @deal.product.available!
-                redirect_to @deal.product, notice: 'Venda cancelada.'
-            end
+        @deal.update(deal_params)
+        if @deal.closed?
+            @deal.product.sold!
+            redirect_to @deal.product, notice: 'Venda confirmada!'
         else
-            render :edit
+            redirect_to @deal.product
         end
     end
 
@@ -39,6 +35,6 @@ class DealsController < ApplicationController
     private
 
     def deal_params
-        params.require(:deal).permit(:user_id)
+        params.require(:deal).permit(:user_id, :status)
     end
 end

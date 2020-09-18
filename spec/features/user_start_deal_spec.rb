@@ -74,7 +74,9 @@ feature 'User view products' do
         click_on 'Ver detalhes da compra'
         select 'Confirmar', from: 'Status'
         click_on 'Finalizar'
-
-        expect(product.reload).to be_available
+        
+        expect(page).to have_content('Venda confirmada!')
+        expect(deal.reload).to be_closed
+        expect(product.reload).to be_sold
     end
 end
