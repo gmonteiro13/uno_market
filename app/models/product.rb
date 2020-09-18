@@ -3,9 +3,9 @@ class Product < ApplicationRecord
   has_many :comments, as: :commentable
   has_one :deal
 
-  validates :product_name, presence: true
+  validates :product_name, presence: true, length: { maximum: 50 }
   validates :category, presence: true
-  validates :description, presence: true
+  validates :description, presence: true, length: { maximum: 200 }
 
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1, message: 'Preço precisa ser maior ou igual a R$ 1,00' }
 
