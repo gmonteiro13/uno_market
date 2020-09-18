@@ -24,4 +24,4 @@ Ao criar um perfil, o usuário pode ver produtos cadastrados da mesma empresa, o
 O usuário também pode tirar dúvidas na página do produto.
 
 * Status do projeto: Incompleto. O usuário deve ser capaz de adicionar produtos à sua lista de interesse
-e conversar com outros usuários nas suas respectivas páginas de perfil. O usuário deve adicionar fotos ao produto. Atingir uma cobertura maior de testes (atualmente está em 95%).
+e conversar com outros usuários nas suas respectivas páginas de perfil. O usuário deve adicionar fotos ao produto. Atingir uma cobertura maior de testes (atualmente está em 95%), principalmente em relação aos produtos e suas funcionalidades dependendo do status.
