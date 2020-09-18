@@ -17,10 +17,23 @@ class DealsController < ApplicationController
         redirect_to @product, notice: 'Processo de compra iniciado'
     end
 
-    def closed
-        @deal = Deal.find(params[:deal])
-        @deal.closed!
-        @deal.product.unavailable!
+    def update
+        @deal = Deal.find(params[:id])
+        if @deal.update(deal_params)
+            if @deal.closed?
+                @deal.product.sold!
+                redirect_to @deal.product, notice: 'Venda finalizada!'
+            else
+                @deal.product.available!
+                redirect_to @deal.product, notice: 'Venda cancelada.'
+            end
+        else
+            render :edit
+        end
+    end
+
+    def edit
+        @deal = Deal.find(params[:id])
     end
 
     private

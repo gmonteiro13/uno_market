@@ -1,0 +1,43 @@
+<h1>Iniciando o processo de compra!</h1>
+<h2>Confirme as informações antes de finalizar ou cancelar a venda.</h2>
+
+<h3>Dados do produto</h3>
+<p>
+  <strong>Nome do produto:</strong>
+  <%= @deal.product.product_name %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @deal.product.category %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @deal.product.description %>
+</p>
+
+<p>
+  <strong>Vendedor:</strong>
+  <%= @deal.product.user.email %>
+</p>
+
+<p>
+  <strong>Empresa:</strong>
+  <%= @deal.product.user.company %>
+</p>
+
+<p>
+  <strong>Comprador:</strong>
+  <%= @deal.user.email %>
+</p>
+
+<%= form_with model: [@product, @deal], local: true do |f| %>
+    <%= f.label :status %>
+    <%= f.select(:status, options_for_select([["Confirmar", 5], ["Cancelar", 10]])) %>
+
+    <%= f.label :price %>
+    <%= f.number_field :price, required: true, class: 'form-control', value: @deal.product.price%>
+
+    <%= f.submit 'Finalizar' %>
+<% end %>
